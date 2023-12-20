@@ -55,3 +55,39 @@ pip install -r requirements.txt
 Python 3.11.1
 ```
 
+## Using the Expense Management System
+1. Import the Expense and ExpenseDatabase classes:
+``` python
+from expense import Expense, ExpenseDatabase
+```
+2. Create a database instance to store expenses:
+```pyhton
+database = ExpenseDatabase()
+```
+Now you can store expenses. 
+3. Let's add a sample expense to the database:
+```python
+expense = Expense("Shoes", 500)
+db.add_expense(expense)
+Note: Multiple expenses can be added at the same time.
+```
+4. You can also update the title or amount of an expense:
+```python
+expense.update("Shoes", 600) # Update amount
+```
+5. When expenses are in the database, you can retrieve with their unique ID:
+```python
+db.get_expense_by_id("2135a902-f956-4810-8986-65bdcb3ef08f") 
+```
+6. You can also remove an unwanted expense using its ID, retrieve all expenses with a prticular title or convert the database to a dictionary for serialization:
+```python
+# Remove expense
+db.remove_expense("2135a902-f956-4810-8986-65bdcb3ef08f")
+
+# Get expenses by title
+expenses = db.get_expenses_by_title("Shoes")
+
+# Convert to dictionary
+expenses_dict = db.to_dict()
+```
+See example_app.py for a sample implementation of the Expense and ExpenseDatabase classes.
