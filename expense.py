@@ -77,7 +77,7 @@ class ExpenseDatabase:
     """
 
     def __init__(self):
-        self.expenses = []
+        self.expenses = list()
 
 
     def add_expense(self, *expenses: Expense) -> None:
