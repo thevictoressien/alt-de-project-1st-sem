@@ -28,8 +28,8 @@ class Expense:
         self.title = title
         self.amount = amount
         self.id = str(uuid4())
-        self.created_at = datetime.utcnow().replace(tzinfo=pytz.utc).astimezone(pytz.timezone('Europe/Paris'))
-        self.updated_at = datetime.utcnow().replace(tzinfo=pytz.utc).astimezone(pytz.timezone('Europe/Paris'))
+        self.created_at = datetime.utcnow().replace(tzinfo=pytz.utc).astimezone(pytz.timezone('Europe/Paris')).isoformat()
+        self.updated_at = datetime.utcnow().replace(tzinfo=pytz.utc).astimezone(pytz.timezone('Europe/Paris')).isoformat()
 
 
     def update(self, title: str = None, amount: float = None) -> None:
@@ -63,7 +63,7 @@ class Expense:
     
     
     def __repr__(self) -> str:
-      return f"Expense(id={self.id}, title={self.title}, \amount={self.amount}, " \
+      return f"Expense(id={self.id}, title={self.title}, amount={self.amount}, " \
                f"created_at={self.created_at}, updated_at={self.updated_at})"
 
 
@@ -80,8 +80,8 @@ class ExpenseDatabase:
         self.expenses = []
 
 
-    def add_expense(self, **expenses: Expense) -> None:
-        """Adds a new expense record."""
+    def add_expense(self, *expenses: Expense) -> None:
+        """Adds new expense records."""
         for expense in expenses:
             self.expenses.append(expense)
 
@@ -108,11 +108,3 @@ class ExpenseDatabase:
 
     def __repr__(self) -> str:
         return f"ExpenseDatabase(expenses={self.expenses})"
-
-expense1 = Expense("Coffee", 2.5)
-expense2 = Expense("Salary", 3000)
-
-db = ExpenseDatabase()
-db.add_expense(expense1, expense2)
-
-print(db)
