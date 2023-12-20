@@ -19,6 +19,12 @@ class Expense:
     """Represents an expense record."""
 
     def __init__(self, title: str, amount: float) -> None:
+        
+        if not isinstance(title, str):
+            raise ValueError("Title must be a string")
+        if not isinstance(amount, (int, float)):
+            raise TypeError("Amount must be a number")
+        
         self.title = title
         self.amount = amount
         self.id = str(uuid4())
@@ -101,14 +107,3 @@ class ExpenseDatabase:
 
     def __repr__(self) -> str:
         return f"ExpenseDatabase(expenses={self.expenses})"
-
-
-
-# some tests
-expense1 = Expense('Rent', 1000)
-expense2 = Expense('Groceries', 100)
-expense3 = Expense('Utilities', 150)
-db = ExpenseDatabase()
-
-db.add_expense(expense1)
-print(db)
