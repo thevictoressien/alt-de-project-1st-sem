@@ -80,9 +80,10 @@ class ExpenseDatabase:
         self.expenses = []
 
 
-    def add_expense(self, expense: Expense) -> None:
+    def add_expense(self, **expenses: Expense) -> None:
         """Adds a new expense record."""
-        self.expenses.append(expense)
+        for expense in expenses:
+            self.expenses.append(expense)
 
 
     def remove_expense(self, id: str) -> Expense:
@@ -107,3 +108,11 @@ class ExpenseDatabase:
 
     def __repr__(self) -> str:
         return f"ExpenseDatabase(expenses={self.expenses})"
+
+expense1 = Expense("Coffee", 2.5)
+expense2 = Expense("Salary", 3000)
+
+db = ExpenseDatabase()
+db.add_expense(expense1, expense2)
+
+print(db)
