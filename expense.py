@@ -28,8 +28,10 @@ class Expense:
         self.title = title
         self.amount = amount
         self.id = str(uuid4())
-        self.created_at = datetime.utcnow().replace(tzinfo=pytz.utc).astimezone(pytz.timezone('Europe/Paris')).isoformat()
-        self.updated_at = datetime.utcnow().replace(tzinfo=pytz.utc).astimezone(pytz.timezone('Europe/Paris')).isoformat()
+        self.created_at = datetime.utcnow().replace(tzinfo=pytz.utc)\
+            .astimezone(pytz.timezone('Europe/Paris')).isoformat()
+        self.updated_at = datetime.utcnow().replace(tzinfo=pytz.utc)\
+            .astimezone(pytz.timezone('Europe/Paris')).isoformat()
 
 
     def update(self, title: str = None, amount: float = None) -> None:
@@ -44,9 +46,8 @@ class Expense:
             self.title = title
         if amount:
             self.amount = amount
-        self.updated_at = datetime.utcnow()\
-            .replace(tzinfo=pytz.utc)\
-                .astimezone(pytz.timezone('Europe/Paris'))
+        self.updated_at = datetime.utcnow().replace(tzinfo=pytz.utc)\
+            .astimezone(pytz.timezone('Europe/Paris'))
 
 
     def to_dict(self) -> dict:
