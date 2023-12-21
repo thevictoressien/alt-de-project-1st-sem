@@ -6,11 +6,11 @@ print("Welcome to the expense management system!")
 database = ExpenseDatabase()
 
 # Add some initial sample expenses
-expense1 = Expense("Groceries", 25.50)
-expense2 = Expense("Gas", 40.00)
-expense3 = Expense("Dinner", 55.25)
+# expense1 = Expense("Groceries", 25.50)
+# expense2 = Expense("Gas", 40.00)
+# expense3 = Expense("Dinner", 55.25)
 
-database.add_expense(expense1, expense2, expense3)
+# database.add_expense(expense1, expense2, expense3)
 
 while True:
     print("\nWhat would you like to do?")
@@ -53,9 +53,12 @@ while True:
         print("Expense removed!")
         
     elif choice == '4':
-        expenses = database.to_dict()
-        df = pd.DataFrame(expenses)
-        print(df)
+        if len(database.expenses) == 0:
+            print("No expenses found!")
+        else:
+            expenses = database.to_dict()
+            df = pd.DataFrame(expenses)
+            print(df)
         
     elif choice == '5':
         id = input("Enter ID to search for: ")
